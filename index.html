@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 2nd Anniversary ❤️</title>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #00ffcc;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #terminal {
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid #00ffcc;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            min-height: 250px;
+            position: relative;
+            z-index: 10;
+        }
+        .buttons {
+            display: flex;
+            gap: 5px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .close { background: #ff5f56; }
+        .min { background: #ffbd2e; }
+        .max { background: #27c93f; }
+        
+        #text {
+            margin-top: 15px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: floatUp 4s linear infinite;
+            opacity: 0;
+            bottom: -10px;
+            z-index: 1;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+        #click-me {
+            margin-top: 20px;
+            background: transparent;
+            border: 2px solid #ff4d6d;
+            color: #ff4d6d;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: 0.3s;
+            z-index: 10;
+        }
+        #click-me:hover {
+            background: #ff4d6d;
+            color: #fff;
+            box-shadow: 0 0 15px #ff4d6d;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="terminal">
+        <div class="buttons">
+            <div class="btn close"></div>
+            <div class="btn min"></div>
+            <div class="btn max"></div>
+        </div>
+        <div id="text"></div>
+    </div>
+
+    <button id="click-me" onclick="startStory()">Click vào đây đi bé iu...</button>
+
+    <script>
+        const message = `> Khởi chạy hệ thống tình yêu...\n> Đang kiểm tra dữ liệu 2 năm qua...\n> Trạng thái: Hạnh phúc 100%\n\nChúc mừng kỷ niệm 2 năm yêu nhau của chúng mình! ❤️\n\nCảm ơn em đã luôn là mảnh ghép hoàn hảo nhất của anh. 2 năm qua có lúc vui, lúc dỗi hờn, nhưng anh chưa từng ngừng yêu em. Mong rằng chúng ta sẽ cùng nhau viết tiếp những chương code thật đẹp cho tương lai nhé! 🥂✨`;
+        let index = 0;
+
+        function startStory() {
+            document.getElementById('click-me').style.display = 'none';
+            typeEffect();
+            setInterval(createHeart, 300);
+        }
+
+        function typeEffect() {
+            if (index < message.length) {
+                document.getElementById('text').innerHTML += message.charAt(index);
+                index++;
+                setTimeout(typeEffect, 50);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+    </script>
+</body>
+</html>
